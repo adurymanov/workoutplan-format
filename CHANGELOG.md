@@ -5,7 +5,10 @@ field changes only on a breaking change to the file format, as described in
 [SPEC.md §12](SPEC.md#12-versioning), while the package follows semantic
 versioning.
 
-## [Unreleased]
+## [1.0.0] - 2026-08-03
+
+First release. Format version 1 is frozen, and the package API is covered by
+semantic versioning from here on.
 
 ### Added
 
