@@ -51,7 +51,7 @@ implementation so they do not have to.
 ## Using the Swift package
 
 ```swift
-.package(url: "https://github.com/adurymanov/workoutplan-format.git", from: "1.0.0")
+.package(url: "https://github.com/adurymanov/workoutplan-format.git", from: "2.0.0")
 ```
 
 There are two products, so that tools which only read files do not pull in

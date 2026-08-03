@@ -9,9 +9,46 @@ public struct ResolvedWorkout: Sendable {
     public let plan: WorkoutKit.WorkoutPlan
     public let date: DateComponents
 
+    /// Apps that let the athlete pick dates in their own UI build these directly,
+    /// rather than going through ``WorkoutPlanScheduler/resolve(_:timeZone:dateForUndated:)``.
+    public init(source: Workout, plan: WorkoutKit.WorkoutPlan, date: DateComponents) {
+        self.source = source
+        self.plan = plan
+        self.date = date
+    }
+
     public var scheduledWorkoutPlan: ScheduledWorkoutPlan {
         ScheduledWorkoutPlan(plan, date: date)
     }
+}
+
+/// Whether the app may put workouts on the paired watch.
+///
+/// This mirrors `WorkoutScheduler.AuthorizationState`, which WorkoutKit does not
+/// mark `Sendable`. Returning Apple's type from an `async` API pushes a
+/// concurrency warning onto every caller that reads it from the main actor, and
+/// that warning becomes an error in the Swift 6 language mode, so the package
+/// hands back its own value type instead.
+public enum SchedulingAuthorization: Sendable, Hashable {
+    case notDetermined
+    case restricted
+    case denied
+    case authorized
+    /// A state introduced by a newer WorkoutKit than this package knows about.
+    case unrecognised
+
+    public init(_ state: WorkoutScheduler.AuthorizationState) {
+        switch state {
+        case .notDetermined: self = .notDetermined
+        case .restricted: self = .restricted
+        case .denied: self = .denied
+        case .authorized: self = .authorized
+        @unknown default: self = .unrecognised
+        }
+    }
+
+    /// Whether scheduling will actually work right now.
+    public var isAuthorized: Bool { self == .authorized }
 }
 
 /// Thin, testable wrapper over `WorkoutScheduler`.
@@ -63,12 +100,12 @@ public enum WorkoutPlanScheduler {
 
     /// Requests permission to put workouts on the paired watch.
     @discardableResult
-    public static func requestAuthorization() async -> WorkoutScheduler.AuthorizationState {
-        await WorkoutScheduler.shared.requestAuthorization()
+    public static func requestAuthorization() async -> SchedulingAuthorization {
+        SchedulingAuthorization(await WorkoutScheduler.shared.requestAuthorization())
     }
 
-    public static var authorizationState: WorkoutScheduler.AuthorizationState {
-        get async { await WorkoutScheduler.shared.authorizationState }
+    public static var authorizationState: SchedulingAuthorization {
+        get async { SchedulingAuthorization(await WorkoutScheduler.shared.authorizationState) }
     }
 
     /// Schedules the given workouts, in order.

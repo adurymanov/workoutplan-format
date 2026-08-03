@@ -201,4 +201,37 @@ struct SchedulingTests {
     func limitIsReadFromWorkoutKit() {
         #expect(WorkoutPlanScheduler.maxScheduledWorkoutCount > 0)
     }
+
+    @Test("An app can build a ResolvedWorkout from its own date picker")
+    func resolvedWorkoutIsConstructible() throws {
+        let file = try read(
+            #"{"workouts":[{"type":"goal","activity":"running","goal":{"type":"open"}}]}"#)
+        let workout = file.workouts[0]
+
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Europe/Berlin")!
+        var date = DateComponents()
+        date.calendar = calendar
+        date.timeZone = calendar.timeZone
+        date.year = 2026
+        date.month = 9
+        date.day = 8
+        date.hour = 7
+        date.minute = 30
+
+        let resolved = ResolvedWorkout(
+            source: workout, plan: try workout.workoutKitPlan(), date: date)
+        #expect(resolved.scheduledWorkoutPlan.date.hour == 7)
+        #expect(resolved.scheduledWorkoutPlan.plan == resolved.plan)
+    }
+
+    @Test("Authorization states map onto a Sendable value")
+    func authorizationMapping() {
+        #expect(SchedulingAuthorization(.notDetermined) == .notDetermined)
+        #expect(SchedulingAuthorization(.restricted) == .restricted)
+        #expect(SchedulingAuthorization(.denied) == .denied)
+        #expect(SchedulingAuthorization(.authorized) == .authorized)
+        #expect(SchedulingAuthorization(.authorized).isAuthorized)
+        #expect(!SchedulingAuthorization(.denied).isAuthorized)
+    }
 }
