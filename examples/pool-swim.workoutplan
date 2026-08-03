@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "type": "custom",
+      "scheduledDate": "2026-09-11T09:00:00",
+      "activity": "swimming",
+      "location": "indoor",
+      "displayName": "Pool 1000 m",
+      "blocks": [
+        {
+          "iterations": 1,
+          "steps": [
+            {
+              "purpose": "work",
+              "goal": {
+                "type": "poolSwimDistanceWithTime",
+                "distance": { "value": 1000, "unit": "m" },
+                "time": { "value": 30, "unit": "min" }
+              },
+              "displayName": "Continuous swim"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

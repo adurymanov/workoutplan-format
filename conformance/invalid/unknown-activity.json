@@ -1,0 +1,4 @@
+{
+  "version": 1,
+  "workouts": [{ "type": "goal", "activity": "quidditch", "goal": { "type": "open" } }]
+}

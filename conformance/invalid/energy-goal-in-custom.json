@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "workouts": [{
+    "type": "custom", "activity": "running", "location": "outdoor",
+    "blocks": [{ "iterations": 1, "steps": [
+      { "purpose": "work", "goal": { "type": "energy", "value": 300, "unit": "kcal" } }
+    ]}]
+  }]
+}

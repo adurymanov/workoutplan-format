@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "extensions": { "com.example.coach": { "athleteId": "a-42" } },
+  "workouts": [
+    {
+      "type": "custom",
+      "activity": "running",
+      "location": "outdoor",
+      "extensions": { "com.example.coach": { "tss": 65 } },
+      "blocks": [
+        {
+          "iterations": 2,
+          "extensions": { "com.example.coach": { "label": "main set" } },
+          "steps": [
+            {
+              "purpose": "work",
+              "goal": { "type": "time", "value": 5, "unit": "min" },
+              "extensions": { "com.example.coach": { "rpe": 7 } }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "$comment": "Language-agnostic conformance suite for the .workoutplan format. Every implementation should read each file under valid/ without error and reject each file under invalid/ with the stated error code.",
+  "specVersion": 1,
+  "valid": [
+    {
+      "file": "valid/absolute-date.workoutplan",
+      "description": "Absolute date with a UTC offset: a fixed instant, converted for display.",
+      "schemaValid": true
+    },
+    {
+      "file": "valid/aliases.workoutplan",
+      "description": "Non-canonical spellings a reader must accept ('run', 'minutes', 'rest'). Writers must not emit these, so this file is deliberately not valid against the schema.",
+      "schemaValid": false
+    },
+    {
+      "file": "valid/all-alerts.workoutplan",
+      "description": "Every alert type, on an activity that supports it.",
+      "schemaValid": true
+    },
+    {
+      "file": "valid/all-goals.workoutplan",
+      "description": "Every goal type, including energy in the only place it is allowed.",
+      "schemaValid": true
+    },
+    {
+      "file": "valid/extensions.workoutplan",
+      "description": "Reserved `extensions` containers at every level must survive a read/write round-trip.",
+      "schemaValid": true
+    },
+    {
+      "file": "valid/minimal-goal.workoutplan",
+      "description": "The smallest possible file: one goal workout, no date, no location.",
+      "schemaValid": true
+    },
+    {
+      "file": "valid/wall-clock-date.workoutplan",
+      "description": "Local wall-clock date: 07:30 in whatever time zone the athlete is in.",
+      "schemaValid": true
+    }
+  ],
+  "invalid": [
+    {
+      "file": "invalid/alert-missing-max.json",
+      "error": "missing_field",
+      "schemaInvalid": true,
+      "description": "A range alert needs both bounds."
+    },
+    {
+      "file": "invalid/empty-legs.json",
+      "error": "empty_legs",
+      "schemaInvalid": true,
+      "description": "A swim-bike-run workout needs at least one leg."
+    },
+    {
+      "file": "invalid/empty-workouts.json",
+      "error": "empty_file",
+      "schemaInvalid": true,
+      "description": "A file with nothing to schedule."
+    },
+    {
+      "file": "invalid/energy-goal-in-custom.json",
+      "error": "energy_goal_in_custom_workout",
+      "schemaInvalid": true,
+      "description": "Energy goals exist only in a single-goal workout - a WorkoutKit restriction."
+    },
+    {
+      "file": "invalid/future-version.json",
+      "error": "unsupported_version",
+      "schemaInvalid": true,
+      "description": "A v1 reader must refuse a file from a future major version."
+    },
+    {
+      "file": "invalid/invalid-date.json",
+      "error": "invalid_date",
+      "schemaInvalid": true,
+      "description": "`scheduledDate` is a timestamp, never prose."
+    },
+    {
+      "file": "invalid/missing-activity.json",
+      "error": "missing_field",
+      "schemaInvalid": true,
+      "description": "A custom workout without an activity."
+    },
+    {
+      "file": "invalid/missing-goal.json",
+      "error": "missing_field",
+      "schemaInvalid": true,
+      "description": "A goal workout without a goal."
+    },
+    {
+      "file": "invalid/missing-legs.json",
+      "error": "missing_field",
+      "schemaInvalid": true,
+      "description": "A swim-bike-run workout without legs."
+    },
+    {
+      "file": "invalid/missing-pacer-time.json",
+      "error": "missing_field",
+      "schemaInvalid": true,
+      "description": "A pacer workout needs both a distance and a time."
+    },
+    {
+      "file": "invalid/not-json.json",
+      "error": "invalid_json",
+      "schemaInvalid": true,
+      "description": "Not parseable as JSON at all."
+    },
+    {
+      "file": "invalid/reversed-alert-range.json",
+      "error": "invalid_range",
+      "schemaInvalid": false,
+      "description": "min above max. JSON Schema cannot compare two sibling values, so only a reader catches this."
+    },
+    {
+      "file": "invalid/unknown-activity.json",
+      "error": "unknown_activity",
+      "schemaInvalid": true,
+      "description": "An activity that is not in the vocabulary."
+    },
+    {
+      "file": "invalid/unknown-alert-type.json",
+      "error": "unknown_alert_type",
+      "schemaInvalid": true,
+      "description": "An alert type WorkoutKit has no equivalent for."
+    },
+    {
+      "file": "invalid/unknown-goal-type.json",
+      "error": "unknown_goal_type",
+      "schemaInvalid": true,
+      "description": "A goal type that does not exist."
+    },
+    {
+      "file": "invalid/unknown-unit.json",
+      "error": "unknown_unit",
+      "schemaInvalid": true,
+      "description": "A unit outside the vocabulary for that quantity."
+    },
+    {
+      "file": "invalid/unknown-workout-type.json",
+      "error": "unknown_workout_type",
+      "schemaInvalid": true,
+      "description": "`type` outside the four known workout shapes."
+    },
+    {
+      "file": "invalid/zero-iterations.json",
+      "error": "invalid_iterations",
+      "schemaInvalid": true,
+      "description": "A block must repeat at least once."
+    },
+    {
+      "file": "invalid/zone-out-of-range.json",
+      "error": "invalid_zone",
+      "schemaInvalid": true,
+      "description": "Heart-rate zones run from 1 to 5."
+    }
+  ]
+}

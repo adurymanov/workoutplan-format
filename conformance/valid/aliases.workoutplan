@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "type": "custom",
+      "activity": "run",
+      "location": "outdoor",
+      "blocks": [
+        {
+          "iterations": 2,
+          "steps": [
+            { "purpose": "work", "goal": { "type": "time", "value": 5, "unit": "minutes" } },
+            { "purpose": "rest", "goal": { "type": "distance", "value": 400, "unit": "meters" } }
+          ]
+        }
+      ]
+    }
+  ]
+}

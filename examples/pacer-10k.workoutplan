@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "type": "pacer",
+      "scheduledDate": "2026-09-12T07:00:00",
+      "activity": "running",
+      "location": "outdoor",
+      "displayName": "10 km in 50:00",
+      "distance": { "value": 10, "unit": "km" },
+      "time": { "value": 50, "unit": "min" }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "type": "custom",
+      "activity": "cycling",
+      "location": "outdoor",
+      "displayName": "Every cycling alert",
+      "blocks": [
+        {
+          "iterations": 1,
+          "steps": [
+            { "purpose": "work", "goal": { "type": "time", "value": 1, "unit": "min" },
+              "alert": { "type": "powerRange", "min": 200, "max": 250, "unit": "W", "metric": "average" } },
+            { "purpose": "work", "goal": { "type": "time", "value": 1, "unit": "min" },
+              "alert": { "type": "powerThreshold", "value": 220, "unit": "W", "metric": "current" } },
+            { "purpose": "work", "goal": { "type": "time", "value": 1, "unit": "min" },
+              "alert": { "type": "powerZone", "zone": 3 } },
+            { "purpose": "work", "goal": { "type": "time", "value": 1, "unit": "min" },
+              "alert": { "type": "cadenceRange", "min": 85, "max": 95 } },
+            { "purpose": "recovery", "goal": { "type": "time", "value": 1, "unit": "min" },
+              "alert": { "type": "cadenceThreshold", "value": 90 } }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "custom",
+      "activity": "running",
+      "location": "outdoor",
+      "displayName": "Every running alert",
+      "blocks": [
+        {
+          "iterations": 1,
+          "steps": [
+            { "purpose": "work", "goal": { "type": "time", "value": 1, "unit": "min" },
+              "alert": { "type": "heartRateZone", "zone": 5 } },
+            { "purpose": "work", "goal": { "type": "time", "value": 1, "unit": "min" },
+              "alert": { "type": "heartRateRange", "min": 140, "max": 160 } },
+            { "purpose": "work", "goal": { "type": "time", "value": 1, "unit": "min" },
+              "alert": { "type": "speedRange", "min": 10, "max": 12, "unit": "kmh", "metric": "current" } },
+            { "purpose": "work", "goal": { "type": "time", "value": 1, "unit": "min" },
+              "alert": { "type": "speedThreshold", "value": 11, "unit": "kmh", "metric": "average" } }
+          ]
+        }
+      ]
+    }
+  ]
+}

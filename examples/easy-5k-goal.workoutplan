@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "type": "goal",
+      "activity": "running",
+      "location": "outdoor",
+      "displayName": "Easy 5 km",
+      "goal": { "type": "distance", "value": 5, "unit": "km" }
+    }
+  ]
+}

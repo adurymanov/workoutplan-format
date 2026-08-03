@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "type": "custom",
+      "scheduledDate": "2026-09-09T18:00:00",
+      "activity": "cycling",
+      "location": "outdoor",
+      "displayName": "VO2max 5x3",
+      "warmup": { "goal": { "type": "time", "value": 15, "unit": "min" } },
+      "blocks": [
+        {
+          "iterations": 5,
+          "steps": [
+            {
+              "purpose": "work",
+              "goal": { "type": "time", "value": 3, "unit": "min" },
+              "alert": { "type": "powerRange", "min": 250, "max": 300, "unit": "W", "metric": "current" },
+              "displayName": "Interval"
+            },
+            {
+              "purpose": "recovery",
+              "goal": { "type": "time", "value": 3, "unit": "min" },
+              "alert": { "type": "cadenceRange", "min": 85, "max": 95 }
+            }
+          ]
+        }
+      ],
+      "cooldown": { "goal": { "type": "time", "value": 10, "unit": "min" } }
+    }
+  ]
+}

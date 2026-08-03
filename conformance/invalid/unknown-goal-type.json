@@ -1,0 +1,4 @@
+{
+  "version": 1,
+  "workouts": [{ "type": "goal", "activity": "running", "goal": { "type": "steps", "value": 5000 } }]
+}

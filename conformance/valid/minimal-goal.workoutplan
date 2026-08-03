@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "workouts": [
+    { "type": "goal", "activity": "running", "goal": { "type": "distance", "value": 5, "unit": "km" } }
+  ]
+}

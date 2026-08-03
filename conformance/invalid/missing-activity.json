@@ -1,0 +1,4 @@
+{
+  "version": 1,
+  "workouts": [{ "type": "custom", "location": "outdoor", "blocks": [] }]
+}

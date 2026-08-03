@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "type": "goal",
+      "scheduledDate": "2026-09-07T07:30:00",
+      "activity": "running",
+      "location": "outdoor",
+      "displayName": "Mon - recovery run",
+      "goal": { "type": "time", "value": 40, "unit": "min" }
+    },
+    {
+      "type": "custom",
+      "scheduledDate": "2026-09-09T18:30:00",
+      "activity": "cycling",
+      "location": "indoor",
+      "displayName": "Wed - sweet spot",
+      "warmup": { "goal": { "type": "time", "value": 12, "unit": "min" } },
+      "blocks": [
+        {
+          "iterations": 3,
+          "steps": [
+            {
+              "purpose": "work",
+              "goal": { "type": "time", "value": 10, "unit": "min" },
+              "alert": { "type": "powerRange", "min": 200, "max": 230, "unit": "W" }
+            },
+            {
+              "purpose": "recovery",
+              "goal": { "type": "time", "value": 5, "unit": "min" }
+            }
+          ]
+        }
+      ],
+      "cooldown": { "goal": { "type": "time", "value": 8, "unit": "min" } }
+    },
+    {
+      "type": "goal",
+      "scheduledDate": "2026-09-11T19:00:00",
+      "activity": "functionalStrengthTraining",
+      "location": "indoor",
+      "displayName": "Fri - calorie target",
+      "goal": { "type": "energy", "value": 400, "unit": "kcal" }
+    }
+  ]
+}

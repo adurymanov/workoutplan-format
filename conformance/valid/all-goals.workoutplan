@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "type": "custom",
+      "activity": "swimming",
+      "location": "indoor",
+      "blocks": [
+        {
+          "iterations": 1,
+          "steps": [
+            { "purpose": "work", "goal": { "type": "open" } },
+            { "purpose": "work", "goal": { "type": "distance", "value": 400, "unit": "m" } },
+            { "purpose": "work", "goal": { "type": "time", "value": 5, "unit": "min" } },
+            { "purpose": "work", "goal": { "type": "poolSwimDistanceWithTime",
+                "distance": { "value": 200, "unit": "m" }, "time": { "value": 4, "unit": "min" } } }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "goal",
+      "activity": "functionalStrengthTraining",
+      "location": "indoor",
+      "goal": { "type": "energy", "value": 400, "unit": "kcal" }
+    }
+  ]
+}

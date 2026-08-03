@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "type": "goal",
+      "scheduledDate": "2026-09-08T04:30:00Z",
+      "activity": "running",
+      "location": "outdoor",
+      "goal": { "type": "time", "value": 40, "unit": "min" }
+    }
+  ]
+}
