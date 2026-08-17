@@ -221,7 +221,11 @@ struct SchedulingTests {
 
         let resolved = ResolvedWorkout(
             source: workout, plan: try workout.workoutKitPlan(), date: date)
-        #expect(resolved.scheduledWorkoutPlan.date.hour == 7)
+        // WorkoutKit re-derives the components in whatever time zone the process
+        // runs in, so what survives the trip is the instant, not the hour field.
+        let scheduled = try #require(resolved.scheduledWorkoutPlan.date.date)
+        #expect(scheduled == date.date)
+        #expect(calendar.component(.hour, from: scheduled) == 7)
         #expect(resolved.scheduledWorkoutPlan.plan == resolved.plan)
     }
 
